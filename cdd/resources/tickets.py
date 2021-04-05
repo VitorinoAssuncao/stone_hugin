@@ -40,22 +40,6 @@ class TicketsItem(BaseResource):
         
         resp.status = falcon.HTTP_200
         resp.media = obj
-        
-    def on_put(self,req,resp,id):
-        stock_model = Stocks.get_base_stock(self.db.session,id)
-        stock_model.stock_value = req.media.get('value')
-        
-        try:
-            stock_model.save(self.db.session)
-
-        except IntegrityError:
-            raise falcon.HTTPBadRequest(
-                'Atualização Não Realizada',
-                'Validar valor informado.'
-            )
-
-        resp.status = falcon.HTTP_200
-        resp.media = stock_model.serialize()
 
 class TicketAverage(BaseResource):
     def on_get(self,req,resp,name):
