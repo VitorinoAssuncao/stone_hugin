@@ -11,9 +11,9 @@ def client():
 
 def test_get_stocks(client):
     doc = {
-            'id' : 1,
-            'base': 'AC - RIO BRANCO',
-            'value': 379
+        "id": 2,
+        "base": "AL - MACEIO",
+        "value": 98
     }
 
     response = client.simulate_get('/stocks')
@@ -26,7 +26,7 @@ def test_get_stocks_item(client):
     doc = {
             'id' : 1,
             'base': 'AC - RIO BRANCO',
-            'value': 379
+            'value': 415
     }
 
     response = client.simulate_get('/stocks/1')
@@ -34,6 +34,37 @@ def test_get_stocks_item(client):
 
     assert result_doc == doc
     assert response.status == falcon.HTTP_OK
+
+def test_update_of_stock_item(client):
+    doc = {
+            'id' : 1,
+            'base': 'AC - RIO BRANCO',
+            'value': 415
+    }
+
+    response = client.simulate_put('/stocks/1',json=doc)
+    result_doc = response.json
+
+    assert result_doc == doc
+    assert response.status == falcon.HTTP_OK
+
+def test_error_when_updating_stock_item(client):
+    doc = {
+            'id' : 1,
+            'base': 'AC - RIO BRANCO',
+            'value': 'XXXX'
+    }
+
+    response_doc = {
+        "title": "Atualização Não Realizada",
+        "description": "Validar valor informado."
+    }
+
+    response = client.simulate_put('/stocks/1',json=doc)
+    result_doc = response.json
+
+    assert result_doc == response_doc
+    assert response.status == falcon.HTTP_400
 
 def test_get_tickets(client):
     doc = {
@@ -85,3 +116,16 @@ def test_if_average_value_of_tickets_of_a_base(client):
 
     assert result_doc == doc
     assert response.status == falcon.HTTP_OK
+
+def test_if_average_value_of_tickets_of_a_base(client):
+    doc = {
+        "ticket_base": "SC - BLUMENAU",
+        "average": 2
+    }
+
+    response = client.simulate_get('/tickets/SC - BLUMENAU/average')
+    result_doc = response.json
+
+    assert result_doc == doc
+    assert response.status == falcon.HTTP_OK
+
