@@ -1,8 +1,8 @@
 import falcon
 import json
 
-from database.models import Stocks
-from resources import BaseResource
+from cdd.database.models import Stocks
+from cdd.resources import BaseResource
 from sqlalchemy.exc import IntegrityError
 
 class StocksCollection(BaseResource):

@@ -1,8 +1,8 @@
 import falcon
 
-from database.manager import DBManager
-from resources.stocks import StocksCollection, StocksItem
-from resources.tickets import TicketsCollection, TicketsItem, TicketAverage
+from cdd.database.manager import DBManager
+from cdd.resources.stocks import StocksCollection, StocksItem
+from cdd.resources.tickets import TicketsCollection, TicketsItem, TicketAverage
 
 api = falcon.API()
 db = DBManager('postgresql+psycopg2://postgres:R@posinh@1@localhost:5432/cdd_controller')

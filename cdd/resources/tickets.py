@@ -1,8 +1,8 @@
 import falcon
 import json
 
-from database.models import Tickets
-from resources import BaseResource
+from cdd.database.models import Tickets
+from cdd.resources import BaseResource
 from sqlalchemy.exc import IntegrityError
 
 class TicketsCollection(BaseResource):

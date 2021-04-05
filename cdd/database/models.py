@@ -75,7 +75,7 @@ class Tickets(BaseModel):
         models = []
         with session.begin():
             query = session.query(cls)
-            models  = query.filter_by(ticket_base=value).order_by(cls.ticket_date).all()        
+            models  = query.filter_by(ticket_base=value.upper()).order_by(cls.ticket_date).all()        
         return models
 
     def save(self,session):
