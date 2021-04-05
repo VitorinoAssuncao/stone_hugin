@@ -3,7 +3,7 @@ import json
 
 from cdd.database.models import Stocks
 from cdd.resources import BaseResource
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import IntegrityError,SQLAlchemyError
 
 class StocksCollection(BaseResource):
     def on_get(self,req,resp):
@@ -46,7 +46,7 @@ class StocksItem(BaseResource):
         try:
             stock_model.save(self.db.session)
 
-        except IntegrityError:
+        except SQLAlchemyError:
             raise falcon.HTTPBadRequest(
                 'Atualização Não Realizada',
                 'Validar valor informado.'
