@@ -19,3 +19,9 @@ api.add_route('/stocks/{id}',stock_item)
 api.add_route('/tickets',tickets)
 api.add_route('/tickets/{name}',ticket_item)
 api.add_route('/tickets/{name}/average',ticket_average)
+
+if __name__ == "__main__":
+    from wsgiref import simple_server
+
+    httpd = simple_server.make_server("127.0.0.1",5000,api)
+    httpd.serve_forever()
