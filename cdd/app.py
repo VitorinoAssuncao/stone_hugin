@@ -5,7 +5,7 @@ from cdd.resources.stocks import StocksCollection, StocksItem
 from cdd.resources.tickets import TicketsCollection, TicketsItem, TicketAverage
 
 api = falcon.API()
-db = DBManager('postgresql+psycopg2://postgres:R@posinh@1@localhost:5432/cdd_controller')
+db = DBManager()
 
 stocks = StocksCollection(db)
 stock_item = StocksItem(db)
