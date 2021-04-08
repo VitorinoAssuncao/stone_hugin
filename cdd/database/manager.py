@@ -12,7 +12,7 @@ class DBManager(object):
     def __init__(self):
 #        self.connection = 'postgresql+psycopg2://dev:dev@localhost:5432/cddcontroler'
 #        self.connection = 'postgresql+psycopg2://postgres:R@posinh@1@localhost:5432/cdd_controller'
-        self.connection = 'postgres://nmonwnodnkydnb:137c1c8d1013754f50de8ce05e22b3f096c3d830ac64f417c2e7e67867d1afff@ec2-52-1-115-6.compute-1.amazonaws.com:5432/dbt159vt4r4duk'
+        self.connection = 'postgresql+psycopg2://nmonwnodnkydnb:137c1c8d1013754f50de8ce05e22b3f096c3d830ac64f417c2e7e67867d1afff@ec2-52-1-115-6.compute-1.amazonaws.com:5432/dbt159vt4r4duk'
         self.engine = sqlalchemy.create_engine(self.connection)
         self.DBSession = scoping.scoped_session(
             orm.sessionmaker(
