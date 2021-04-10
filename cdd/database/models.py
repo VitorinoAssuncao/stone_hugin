@@ -79,12 +79,23 @@ class Tickets(BaseModel):
             models  = query.filter_by(ticket_base=value.upper()).order_by(cls.ticket_date).all()        
         return models
 
-    def get_ticket_average(cls,session,value):
+    @classmethod
+    def get_total_of_tickets(cls,session,value):
         models = []
         with session.begin():
             query = session.query(cls)
-            #models = query(func.count(distinct(ticket_date).label("total_date")),func.sum(ticket_consumption).label("total")).filter_by(ticker_base=value.upper()             
-            models  = query(func.count(distinct(cls.ticket_date).label("total_date")),func.sum(ticket_consumption).label("total")).filter_by(ticket_base=value.upper()).all()                
+            query  = query.filter_by(ticket_base=value.upper())
+            models = query.count()       
+        return models
+
+    @classmethod
+    def get_distinct_count_dates_on_tickets(cls,session,value):
+        models = []
+        with session.begin():
+            query = session.query(cls)
+            query  = query.filter_by(ticket_base=value.upper())
+            query = query.distinct(cls.ticket_date)
+            models = query.count()
         return models
 
     def save(self,session):

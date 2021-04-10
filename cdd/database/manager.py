@@ -11,6 +11,9 @@ from cdd.database.models import Stocks
 class DBManager(object):
     def __init__(self):
         # Rota configurada para a base no docker           
+        # self.connection = 'postgresql+psycopg2://dev:dev@localhost:5432/cdd_controller'
+        
+        # Rota Local
         # self.connection = 'postgresql+psycopg2://postgres:R@posinh@1@localhost:5432/cdd_controller'
 
         # Rota configurada para a base do heroku
