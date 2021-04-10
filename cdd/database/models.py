@@ -17,7 +17,8 @@ class Stocks(BaseModel):
         return {
             'id' : self.stock_id,
             'base': self.stock_base,
-            'value': self.stock_value
+            'value': self.stock_value,
+            'average': 0
         }
 
     @classmethod
