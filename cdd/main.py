@@ -4,7 +4,7 @@ from cdd.database.manager import DBManager
 from cdd.resources.stocks import StocksCollection, StocksItem
 from cdd.resources.tickets import TicketsCollection, TicketsItem, TicketAverage
 
-api = falcon.API()
+api = falcon.API(cors_enable=True)
 db = DBManager()
 
 stocks = StocksCollection(db)
