@@ -13,24 +13,25 @@ class StocksCollection(BaseResource):
         
         resp.status = falcon.HTTP_200
         resp.media = obj
+        
+    # Metodo criado porém não utilizado neste momento
+    # def on_post(self,req,resp):
+    #     model = Stocks(
+    #       stock_base = req.media.get('base'),
+    #       stock_value = req.media.get('value')  
+    #     )
 
-    def on_post(self,req,resp):
-        model = Stocks(
-          stock_base = req.media.get('base'),
-          stock_value = req.media.get('value')  
-        )
+    #     try:
+    #         model.save(self.db.session)
 
-        try:
-            model.save(self.db.session)
+    #     except IntegrityError:
+    #         raise falcon.HTTPBadRequest(
+    #           'CDD Já existente',
+    #           'Não foi possível criar o registro pois CDD já existe.'  
+    #         )
 
-        except IntegrityError:
-            raise falcon.HTTPBadRequest(
-              'CDD Já existente',
-              'Não foi possível criar o registro pois CDD já existe.'  
-            )
-
-        resp.status = falcon.HTTP_200
-        resp.media = model.serialize()
+    #     resp.status = falcon.HTTP_200
+    #     resp.media = model.serialize()
 
 
 class StocksItem(BaseResource):

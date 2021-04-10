@@ -12,25 +12,26 @@ class TicketsCollection(BaseResource):
         resp.status = falcon.HTTP_200
         resp.media = obj
 
-    def on_post(self,req,resp):
-        model = Tickets(
-            ticket_date = req.media.get('date'),
-            ticket_base = req.media.get('base'),
-            ticket_country_state = req.media.get('country_state'),
-            ticket_consumption = 1  
-        )
+    # Metodo criado porém não utilizado neste momento
+    # def on_post(self,req,resp):
+    #     model = Tickets(
+    #         ticket_date = req.media.get('date'),
+    #         ticket_base = req.media.get('base'),
+    #         ticket_country_state = req.media.get('country_state'),
+    #         ticket_consumption = 1  
+    #     )
 
-        try:
-            model.save(self.db.session)
+    #     try:
+    #         model.save(self.db.session)
 
-        except IntegrityError:
-            raise falcon.HTTPBadRequest(
-              'Ticket Já existente',
-              'Não foi possível criar o registro pois CDD já existe.'  
-            )
+    #     except IntegrityError:
+    #         raise falcon.HTTPBadRequest(
+    #           'Ticket Já existente',
+    #           'Não foi possível criar o registro pois CDD já existe.'  
+    #         )
 
-        resp.status = falcon.HTTP_200
-        resp.media = model.serialize()
+    #     resp.status = falcon.HTTP_200
+    #     resp.media = model.serialize()
 
 
 class TicketsItem(BaseResource):
