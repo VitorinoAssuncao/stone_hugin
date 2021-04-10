@@ -32,6 +32,10 @@ class TicketAverage(BaseResource):
     def calculate_average(self,name):
         total = Tickets.get_total_of_tickets(self.db.session,name)
         total_date = Tickets.get_distinct_count_dates_on_tickets(self.db.session,name)
-        average_value = round(total / total_date)
+
+        if total == 0 or total_date == 0:
+            average_value = 0
+        else:
+            average_value = round(total / total_date) 
         
         return average_value
