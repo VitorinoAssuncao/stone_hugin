@@ -79,6 +79,14 @@ class Tickets(BaseModel):
             models  = query.filter_by(ticket_base=value.upper()).order_by(cls.ticket_date).all()        
         return models
 
+    def get_ticket_average(cls,session,value):
+        models = []
+        with session.begin():
+            query = session.query(cls)
+            #models = query(func.count(distinct(ticket_date).label("total_date")),func.sum(ticket_consumption).label("total")).filter_by(ticker_base=value.upper()             
+            models  = query(func.count(distinct(cls.ticket_date).label("total_date")),func.sum(ticket_consumption).label("total")).filter_by(ticket_base=value.upper()).all()                
+        return models
+
     def save(self,session):
         with session.begin():
             session.add(self)
