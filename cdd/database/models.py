@@ -27,7 +27,6 @@ class Stocks(BaseModel):
 
         with session.begin():
             query = session.query(cls)
-            query = query.order_by(stock_id)
             models = query.all()
         
         return models
