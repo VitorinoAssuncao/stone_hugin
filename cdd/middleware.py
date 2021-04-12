@@ -3,6 +3,7 @@ from falcon.http_status import HTTPStatus
 
 class HandleCORS(object):
     def process_request(self, req, resp):
+        '''Funcao com o papel de garantir as chamadas CORS para aplicacao'''
         resp.set_header('Access-Control-Allow-Origin', '*')
         resp.set_header('Access-Control-Allow-Methods', '*')
         resp.set_header('Access-Control-Allow-Headers', '*')

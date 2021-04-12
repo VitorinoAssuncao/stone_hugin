@@ -23,6 +23,7 @@ class Stocks(BaseModel):
 
     @classmethod
     def get_list(cls,session):
+        '''Funcao responsavel por retornar a listagem completa de Estoque (Stocks) do banco. Recebe respectivamente a classe de estoque (Stocks) e a sessao atual.'''
         models = []
 
         with session.begin():
@@ -34,6 +35,7 @@ class Stocks(BaseModel):
 
     @classmethod
     def get_stocks_by_id(cls,session,value):
+        '''Funcao responsavel por retornar responsavel por retornar os dados de um estoque individual, recebe como chave o ID (stock_id).'''
         models = []
         with session.begin():
             query = session.query(cls)
@@ -41,6 +43,7 @@ class Stocks(BaseModel):
         return models
 
     def save(self,session):
+        '''Funcao responsavel por salvar os dados a serem adicionados, recebendo os novos dados (self) e a sessao atual.'''     
         with session.begin():
             session.add(self)
 
@@ -66,6 +69,7 @@ class Tickets(BaseModel):
 
     @classmethod
     def get_list(cls,session):
+    '''Funcao responsavel por retornar a listagem completa de Chamados (Tickets) do banco. Recebe respectivamente a classe de chamado (Ticket) e a sessao atual.'''
         models = []
         with session.begin():
             query = session.query(cls)
@@ -74,6 +78,7 @@ class Tickets(BaseModel):
 
     @classmethod
     def get_all_base_tickets(cls,session,value):
+    '''Funcao responsavel por retornar a listagem completa de Chamados (Tickets) do banco de uma respectiva unidade (CDD). Recebe respectivamente a classe de chamado (Ticket), a sessao atual e o valor do nome do cdd (ticket_base) para pesquisa.'''
         models = []
         with session.begin():
             query = session.query(cls)
@@ -82,6 +87,7 @@ class Tickets(BaseModel):
 
     @classmethod
     def get_total_of_tickets(cls,session,value):
+    '''Funcao responsavel por trazer a quantidade de chamados ao todo referente aquela unidade.'''
         models = []
         with session.begin():
             query = session.query(cls)
@@ -91,6 +97,7 @@ class Tickets(BaseModel):
 
     @classmethod
     def get_distinct_count_dates_on_tickets(cls,session,value):
+    '''Funcao responsavel por trazer a quantidade de dias nos quais foram atendidos chamados para a unidade em questao'''
         models = []
         with session.begin():
             query = session.query(cls)
@@ -100,5 +107,6 @@ class Tickets(BaseModel):
         return models
 
     def save(self,session):
+        '''Funcao responsavel por salvar os dados a serem adicionados, recebendo os novos dados (self) e a sessao atual.'''     
         with session.begin():
             session.add(self)
